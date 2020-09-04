@@ -6,6 +6,24 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      plugins: [
+        "gatsby-remark-graphviz",
+        `gatsby-remark-responsive-iframe`,
+        `gatsby-remark-prismjs`,
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            // It's important to specify the maxWidth (in pixels) of
+            // the content container as this plugin uses this as the
+            // base for generating different widths of each image.
+            maxWidth: 590,
+          },
+        },
+      ],
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,6 +43,15 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-plugin-typescript`,
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/posts`,
+        name: "posts",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
